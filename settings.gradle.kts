@@ -8,3 +8,5 @@
  */
 
 rootProject.name = "Algorithms"
+include("library")
+include("benchmark")
