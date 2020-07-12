@@ -17,8 +17,16 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 }
 
-val test by tasks.getting(Test::class) {
-    // Use junit platform for unit tests
+//val test by tasks.getting(Test::class) {
+//    // Use junit platform for unit tests
+//    useJUnitPlatform()
+//    testLogging.showStandardStreams = true
+//}
+
+tasks.withType<Test> {
     useJUnitPlatform()
-    testLogging.showStandardStreams = true
+    testLogging{
+        showStandardStreams = true
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+    }
 }
