@@ -25,6 +25,8 @@ import static algorithm.sort.ElementarySort.*;
 @State(Scope.Group)
 public class ElementarySortBenchmark<T extends Comparable<T>, V extends T> {
 
+    private static final Random random = new Random();
+
     @Param({"128", "256", "512", "1024"})
     public int size;
 
@@ -33,7 +35,7 @@ public class ElementarySortBenchmark<T extends Comparable<T>, V extends T> {
     @Setup
     public void prepare() {
         a = new Integer[size];
-        List<Integer> list = new Random().ints().limit(size).boxed().collect(Collectors.toList());
+        List<Integer> list = random.ints().limit(size).boxed().collect(Collectors.toList());
         list.toArray(a);
     }
 

@@ -1,6 +1,13 @@
 package algorithm.sort;
 
-public class ElementarySort extends Sort {
+public final class ElementarySort extends Sort {
+
+    /**
+     * Use private constructor to avoid instantiating
+     */
+    private ElementarySort() {
+        throw new AssertionError();
+    }
 
     /**
      * <p>One of the simplest sorting algorithms works as follows:

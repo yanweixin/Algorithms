@@ -8,3 +8,21 @@ Algorithms practice
 
 [Kotlin](/src/main/kotlin)
 * [LeetCode practice](/src/main/kotlin/leetcode)
+
+## Usage
+Build projects(including tests):
+```shell
+./gradlew build
+```
+Run tests
+```shell
+./gradlew test
+```
+Generate source code achieve:
+```shell
+./gradlew zip
+```
+Run benchmarks
+```shell
+./gradlew jmh
+```
