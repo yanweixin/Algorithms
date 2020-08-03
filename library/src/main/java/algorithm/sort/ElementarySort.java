@@ -1,6 +1,8 @@
 package algorithm.sort;
 
-public final class ElementarySort extends Sort {
+import static algorithm.sort.SortUtil.*;
+
+public final class ElementarySort {
 
     /**
      * Use private constructor to avoid instantiating

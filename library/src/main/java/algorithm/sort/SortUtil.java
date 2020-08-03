@@ -1,6 +1,6 @@
 package algorithm.sort;
 
-public abstract class Sort {
+public class SortUtil {
     /**
      * Returns if v is less than w
      *

@@ -13,10 +13,10 @@ import java.io.PrintStream;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static algorithm.sort.Sort.*;
+import static algorithm.sort.SortUtil.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class SortTest<T extends Comparable<T>, V extends T> {
+class SortUtilTest<T extends Comparable<T>, V extends T> {
 
     @Nested
     @DisplayName("less() method test")
