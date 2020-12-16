@@ -9,4 +9,5 @@
 
 rootProject.name = "Algorithms"
 include("library")
+include("leetcode")
 include("benchmark")

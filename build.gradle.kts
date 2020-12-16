@@ -1,19 +1,18 @@
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.3.72"
+    id("org.jetbrains.kotlin.jvm") version "1.4.21"
 }
 
 allprojects {
-    version = "0.0.1"
-
     repositories {
-        // Use jcenter for resolving dependencies.
-        // You can declare any Maven/Ivy/file repository here.
         jcenter()
     }
 
     apply(plugin = "java-library")
     apply(plugin = "org.jetbrains.kotlin.jvm")
+
+    version = "0.0.1"
+    java.sourceCompatibility = JavaVersion.VERSION_15
 }
 
 subprojects {
@@ -21,12 +20,42 @@ subprojects {
         "implementation"(platform("org.jetbrains.kotlin:kotlin-bom"))
         "implementation"("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
         "api"("org.apache.commons:commons-math3:3.6.1")
-        "implementation"("com.google.guava:guava:29.0-jre")
+        "implementation"("com.google.guava:guava:30.0-jre")
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
         kotlinOptions {
-            jvmTarget = "13"
+            jvmTarget = "15"
+        }
+    }
+}
+
+configure(subprojects - project(":benchmark")) {
+    val slf4jVersion by extra("1.7.30")
+    val log4j2Version by extra("2.14.0")
+    val junitVersion by extra("5.7.0")
+
+    dependencies {
+        // Use SLF4J with log4j2
+        implementation("org.slf4j:slf4j-api:$slf4jVersion")
+        implementation("org.apache.logging.log4j:log4j-core:$log4j2Version")
+        implementation("org.apache.logging.log4j:log4j-slf4j-impl:$log4j2Version")
+
+        // Use JUnit Jupiter for testing.
+        testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
+
+        // Use the Kotlin test library.
+        testImplementation("org.jetbrains.kotlin:kotlin-test")
+
+        // Use the Kotlin JUnit integration.
+        testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+        testLogging {
+            showStandardStreams = true
+            exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
         }
     }
 }
