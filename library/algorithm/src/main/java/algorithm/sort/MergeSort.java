@@ -1,7 +1,5 @@
 package algorithm.sort;
 
-import static algorithm.sort.SortUtil.*;
-
 public class MergeSort {
 
 //    public static <T extends Comparable<T>> void merge(T[] a, int lo, int mid, int hi) {

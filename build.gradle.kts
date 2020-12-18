@@ -34,6 +34,7 @@ configure(subprojects - project(":benchmark")) {
     val slf4jVersion by extra("1.7.30")
     val log4j2Version by extra("2.14.0")
     val junitVersion by extra("5.7.0")
+    val assertjVersion by extra("3.18.1")
 
     dependencies {
         // Use SLF4J with log4j2
@@ -43,6 +44,7 @@ configure(subprojects - project(":benchmark")) {
 
         // Use JUnit Jupiter for testing.
         testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
+        testImplementation("org.assertj:assertj-core:$assertjVersion")
 
         // Use the Kotlin test library.
         testImplementation("org.jetbrains.kotlin:kotlin-test")
@@ -57,6 +59,9 @@ configure(subprojects - project(":benchmark")) {
             showStandardStreams = true
             exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
         }
+    }
+    tasks.processResources {
+        from("$rootDir/config/resources")
     }
 }
 

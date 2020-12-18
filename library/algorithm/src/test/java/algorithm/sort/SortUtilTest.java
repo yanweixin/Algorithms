@@ -1,6 +1,8 @@
 package algorithm.sort;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.converter.ArgumentConversionException;
 import org.junit.jupiter.params.converter.ConvertWith;
@@ -52,6 +54,7 @@ class SortUtilTest<T extends Comparable<T>, V extends T> {
 
     @Nested
     @DisplayName("show() method test")
+    @EnabledOnOs({OS.LINUX, OS.MAC})
     class ShowTest {
         private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         private final PrintStream originalOut = System.out;
