@@ -17,7 +17,22 @@ package leetcode.string;
 
 public class MonotoneIncreasingDigits {
     public int monotoneIncreasingDigits(int N) {
-
-        return 0;
+        final char[] digits = String.valueOf(N).toCharArray();
+        final int length = digits.length;
+        int idx = 0;
+        for (int i = 0; i < length - 1; i++) {
+            if (digits[i] < digits[i + 1]) {
+                idx = i + 1;
+                continue;
+            }
+            if (digits[i] > digits[i + 1]) {
+                digits[idx]--;
+                for (int j = idx + 1; j < length; j++) {
+                    digits[j] = '9';
+                }
+                break;
+            }
+        }
+        return Integer.parseInt(String.valueOf(digits));
     }
 }
