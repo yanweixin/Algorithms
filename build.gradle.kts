@@ -1,6 +1,7 @@
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.4.21"
+    id("me.champeau.gradle.jmh") version "0.5.0" apply false
 }
 
 allprojects {
@@ -19,7 +20,6 @@ subprojects {
     dependencies {
         "implementation"(platform("org.jetbrains.kotlin:kotlin-bom"))
         "implementation"("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-        "api"("org.apache.commons:commons-math3:3.6.1")
         "implementation"("com.google.guava:guava:30.0-jre")
     }
 
@@ -62,6 +62,12 @@ configure(subprojects - project(":benchmark")) {
     }
     tasks.processResources {
         from("$rootDir/config/resources")
+    }
+
+    if ("test" == parent?.name) {
+        apply {
+            plugin("me.champeau.gradle.jmh")
+        }
     }
 }
 

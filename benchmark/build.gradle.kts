@@ -1,7 +1,7 @@
 dependencies {
     implementation(project(":library"))
-    implementation("org.openjdk.jmh:jmh-core:1.23")
-    annotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.23")
+    implementation("org.openjdk.jmh:jmh-core:1.27")
+    annotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.27")
 }
 
 tasks.register("jmh", JavaExec::class) {
@@ -21,7 +21,11 @@ tasks.jar {
 
     manifest {
         attributes("Main-Class" to "org.openjdk.jmh.Main")
-        attributes("Class-Path" to configurations.runtimeClasspath.get().files.joinToString(" lib/", "lib/") { it.name })
+        attributes(
+            "Class-Path" to configurations.runtimeClasspath.get().files.joinToString(
+                " lib/",
+                "lib/"
+            ) { it.name })
     }
 }
 

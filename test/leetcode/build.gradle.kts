@@ -1,0 +1,3 @@
+jmh {
+    duplicateClassesStrategy = DuplicatesStrategy.EXCLUDE
+}

@@ -17,7 +17,7 @@ class MergeSortTest {
     private final List<List<Integer>> integers = new ArrayList<>();
 
     @ParameterizedTest
-    @MethodSource("intSource")
+    @MethodSource("intsProvider")
     void sortTest(List<Integer> ints) {
         var array = ints.toArray(Integer[]::new);
         sort(array);
@@ -25,14 +25,14 @@ class MergeSortTest {
     }
 
     @ParameterizedTest
-    @MethodSource("intSource")
+    @MethodSource("intsProvider")
     void bottomUpSortTest(List<Integer> ints) {
         var array = ints.toArray(Integer[]::new);
         bottomUpSort(array);
         assertArrayEquals(new Integer[]{1, 2, 3}, array);
     }
 
-    private Stream<List<Integer>> intSource() {
+    private Stream<List<Integer>> intsProvider() {
         permute(java.util.Arrays.asList(3, 2, 1), 0);
         return integers.stream();
     }

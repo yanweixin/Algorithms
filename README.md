@@ -24,5 +24,8 @@ Generate source code achieve:
 ```
 Run benchmarks
 ```shell
+./gradlew --stop # workaround to avoid ZIP LOC error
 ./gradlew jmh
+./gradlew :benchmark:jmh
+./gradlew :test:jmh
 ```
