@@ -1,39 +1,39 @@
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.4.21"
-    id("me.champeau.gradle.jmh") version "0.5.0" apply false
+    kotlin("jvm") version "1.5.31"
+    id("me.champeau.jmh") version "0.6.6" apply false
 }
 
 allprojects {
     repositories {
-        jcenter()
+        mavenCentral()
     }
 
     apply(plugin = "java-library")
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
     version = "0.0.1"
-    java.sourceCompatibility = JavaVersion.VERSION_15
+    java.sourceCompatibility = JavaVersion.VERSION_16
 }
 
 subprojects {
     dependencies {
         "implementation"(platform("org.jetbrains.kotlin:kotlin-bom"))
         "implementation"("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-        "implementation"("com.google.guava:guava:30.0-jre")
+        "implementation"("com.google.guava:guava:31.0.1-jre")
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
         kotlinOptions {
-            jvmTarget = "15"
+            jvmTarget = "16"
         }
     }
 }
 
 configure(subprojects - project(":benchmark")) {
-    val slf4jVersion by extra("1.7.30")
+    val slf4jVersion by extra("1.7.31")
     val log4j2Version by extra("2.14.0")
-    val junitVersion by extra("5.7.0")
+    val junitVersion by extra("5.8.1")
     val assertjVersion by extra("3.18.1")
 
     dependencies {
@@ -47,10 +47,7 @@ configure(subprojects - project(":benchmark")) {
         testImplementation("org.assertj:assertj-core:$assertjVersion")
 
         // Use the Kotlin test library.
-        testImplementation("org.jetbrains.kotlin:kotlin-test")
-
-        // Use the Kotlin JUnit integration.
-        testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+        testImplementation(kotlin("test"))
     }
 
     tasks.withType<Test> {
@@ -66,7 +63,7 @@ configure(subprojects - project(":benchmark")) {
 
     if ("test" == parent?.name) {
         apply {
-            plugin("me.champeau.gradle.jmh")
+            plugin("me.champeau.jmh")
         }
     }
 }

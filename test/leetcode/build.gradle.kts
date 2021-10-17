@@ -1,3 +1,3 @@
 jmh {
-    duplicateClassesStrategy = DuplicatesStrategy.EXCLUDE
+    duplicateClassesStrategy.set(DuplicatesStrategy.EXCLUDE)
 }

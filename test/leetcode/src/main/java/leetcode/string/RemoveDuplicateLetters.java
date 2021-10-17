@@ -28,13 +28,13 @@ public class RemoveDuplicateLetters {
      * @return
      */
     public String useStack(String s) {
-        int[] res = new int[26]; //will contain number of occurences of character (i+'a')
-        boolean[] visited = new boolean[26]; //will contain if character (i+'a') is present in current result Stack
-        char[] chars = s.toCharArray();
-        for (char c : chars) {  //count number of occurences of character
+        final int[] res = new int[26]; //will contain number of occurrences of character (i+'a')
+        final boolean[] visited = new boolean[26]; //will contain if character (i+'a') is present in current result Stack
+        final char[] chars = s.toCharArray();
+        for (char c : chars) {  //count number of occurrences of character
             res[c - 'a']++;
         }
-        Stack<Character> st = new Stack<>(); // answer stack
+        final Stack<Character> st = new Stack<>(); // answer stack
         int index;
         for (char c : chars) {
             index = c - 'a';
@@ -50,7 +50,7 @@ public class RemoveDuplicateLetters {
             visited[index] = true;
         }
 
-        StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
         //pop character from stack and build answer string from back
         while (!st.isEmpty()) {
             sb.insert(0, st.pop());
