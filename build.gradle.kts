@@ -13,14 +13,13 @@ allprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
     version = "0.0.1"
-    java.sourceCompatibility = JavaVersion.VERSION_16
+    java.sourceCompatibility = JavaVersion.VERSION_17
 }
 
 subprojects {
     dependencies {
         "implementation"(platform("org.jetbrains.kotlin:kotlin-bom"))
         "implementation"("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-        "implementation"("com.google.guava:guava:31.0.1-jre")
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
@@ -31,10 +30,10 @@ subprojects {
 }
 
 configure(subprojects - project(":benchmark")) {
-    val slf4jVersion by extra("1.7.31")
-    val log4j2Version by extra("2.14.0")
+    val slf4jVersion by extra("1.7.32")
+    val log4j2Version by extra("2.14.1")
     val junitVersion by extra("5.8.1")
-    val assertjVersion by extra("3.18.1")
+    val assertjVersion by extra("3.21.0")
 
     dependencies {
         // Use SLF4J with log4j2
@@ -43,7 +42,8 @@ configure(subprojects - project(":benchmark")) {
         implementation("org.apache.logging.log4j:log4j-slf4j-impl:$log4j2Version")
 
         // Use JUnit Jupiter for testing.
-        testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
+        testImplementation(platform("org.junit:junit-bom:$junitVersion"))
+        testImplementation("org.junit.jupiter:junit-jupiter")
         testImplementation("org.assertj:assertj-core:$assertjVersion")
 
         // Use the Kotlin test library.
