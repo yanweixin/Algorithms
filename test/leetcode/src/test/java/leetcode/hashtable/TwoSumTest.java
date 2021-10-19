@@ -17,8 +17,8 @@ class TwoSumTest {
 
     @DisplayName("Single test")
     @Test
-    void twoSumSingleTest(){
-        assertArrayEquals(new int[]{0,1},classUnderTest.twoSum(new int[]{0,1},1));
+    void twoSumSingleTest() {
+        assertArrayEquals(new int[]{0, 1}, classUnderTest.twoSum(new int[]{0, 1}, 1));
     }
 
     @DisplayName("Test method without exception")
