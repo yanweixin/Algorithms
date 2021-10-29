@@ -32,11 +32,30 @@ public class IntegerToEnglish {
     private final String[] THOUSANDS = {"", "Thousand", "Million", "Billion"};
 
     public String numberToWords(int num) {
+        if (num == 0) return "Zero";
 
-        return "";
+        int i = 0;
+        StringBuilder words = new StringBuilder();
+
+        while (num > 0) {
+            int remainder = num % 1000;
+            if (remainder != 0) {
+                words.insert(0, convertInt(remainder) + THOUSANDS[i] + " ");
+            }
+            num /= 1000;
+            i++;
+        }
+        return words.toString().trim();
     }
 
     private String convertInt(int num) {
-        return "";
+        if (num == 0)
+            return "";
+        else if (num < 20)
+            return LESS_THAN_20[num] + " ";
+        else if (num < 100)
+            return TENS[num / 10] + " " + convertInt(num % 10);
+        else
+            return LESS_THAN_20[num / 100] + " Hundred " + convertInt(num % 100);
     }
 }
