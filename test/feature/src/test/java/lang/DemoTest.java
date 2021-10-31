@@ -9,18 +9,13 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 
 public class DemoTest {
     private final static Logger logger = LoggerFactory.getLogger(DemoTest.class);
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNext()) {
-            String a = scanner.nextLine();
-            System.out.println(a);
-        }
+
     }
 
     @Test
@@ -29,15 +24,15 @@ public class DemoTest {
         System.out.println(getMaxSteps(a, a.length));
     }
 
-    public static int fama(int n, int[] weight, int[] nums){
+    public static int fama(int n, int[] weight, int[] nums) {
         Set<Integer> set = new HashSet<Integer>();
-        for(int i = 0; i <= nums[0]; i++){
+        for (int i = 0; i <= nums[0]; i++) {
             set.add(weight[0] * i);
         }
-        for(int i = 1; i < n; i++){
+        for (int i = 1; i < n; i++) {
             List<Integer> list = new ArrayList<Integer>(set);
-            for(int j = 0; j <= nums[i]; j++){
-                for(int k = 0; k < list.size(); k++){
+            for (int j = 0; j <= nums[i]; j++) {
+                for (int k = 0; k < list.size(); k++) {
                     set.add(list.get(k) + j * weight[i]);
                 }
             }
