@@ -1,6 +1,6 @@
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    kotlin("jvm") version "1.5.31"
+    kotlin("jvm") version "1.6.21"
     id("me.champeau.jmh") version "0.6.6" apply false
 }
 
