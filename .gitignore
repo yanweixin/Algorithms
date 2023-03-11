@@ -10,3 +10,6 @@ build
 .classpath
 .project
 .settings
+
+# Files
+.DS_Store

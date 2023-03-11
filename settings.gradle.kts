@@ -8,8 +8,13 @@
  */
 
 rootProject.name = "Algorithms"
-include("library")
-include("library:lang", "library:utils", "library:junit", "library:algorithm")
-include("benchmark")
-include("test")
-include("test:feature", "test:leetcode")
+
+File("$rootDir").listFiles { dir, name ->
+    (name.equals("library") || name.equals("test") || name.equals("benchmark")) && File(dir, name).isDirectory
+}!!.forEach {
+    val moduleName = it.name
+    include(moduleName)
+    it.list { dir, name -> File(dir, name).isDirectory && name != "build" }!!.forEach {
+        include("$moduleName:$it")
+    }
+}
